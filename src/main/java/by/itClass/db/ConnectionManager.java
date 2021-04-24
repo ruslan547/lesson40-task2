@@ -1,7 +1,65 @@
 package by.itClass.db;
 
-import java.sql.Connection;
+import java.sql.*;
+import java.util.Objects;
+import java.util.Properties;
+
+import static by.itClass.constants.Constants.*;
 
 public class ConnectionManager {
-    private Connection cn;
+    private static Connection cn;
+    private static Properties properties;
+
+    static {
+        properties = PropertiesManager.getProperties(DB_FILE_NAME);
+        try {
+            Class.forName(properties.getProperty(DB_DRIVER));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Connection getConnection() {
+        try {
+            if (Objects.isNull(cn) || cn.isClosed()) {
+                cn = DriverManager.getConnection(properties.getProperty(DB_URL),
+                        properties.getProperty(DB_USER),
+                        properties.getProperty(DB_PASSWORD));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return cn;
+    }
+
+    public static void closeConnection() {
+        if (Objects.nonNull(cn)) {
+            try {
+                cn.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeStatement(Statement st) {
+        if (Objects.nonNull(st)) {
+            try {
+                st.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeResultSet(ResultSet rs) {
+        if (Objects.nonNull(rs)) {
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
 }

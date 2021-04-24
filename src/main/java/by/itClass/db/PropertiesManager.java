@@ -7,7 +7,7 @@ import java.io.Reader;
 import java.util.Properties;
 
 public class PropertiesManager {
-    public Properties getProperties(String filename) {
+    public static Properties getProperties(String filename) {
         Properties properties = new Properties();
 
         try (Reader reader = new FileReader(filename)) {
