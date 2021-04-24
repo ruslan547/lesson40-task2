@@ -9,8 +9,28 @@
 <html>
 <head>
     <title>Home</title>
+    <style>
+        fieldset {
+            width: 400px;
+        }
+    </style>
 </head>
 <body>
-    <h1>${employee.name}</h1>
+    <%
+        String info = null;
+        if ((Boolean) request.getAttribute("isFound")) {
+            info = "Worker found";
+        } else {
+            info = "Employee not found. New \n employee created";
+        }
+    %>
+    <p><%= info%></p>
+    <fieldset>
+        <legend>Employee №${employee.id}></legend>
+        <p><b>Name: </b>${employee.name}</p>
+        <p><b>Position: </b>${employee.position}</p>
+        <p><b>Salary: </b>${employee.salary}</p>
+    </fieldset>
+    <a href="index.html">back</a>
 </body>
 </html>

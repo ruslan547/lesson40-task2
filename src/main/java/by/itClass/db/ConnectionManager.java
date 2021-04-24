@@ -2,18 +2,13 @@ package by.itClass.db;
 
 import java.sql.*;
 import java.util.Objects;
-import java.util.Properties;
-
-import static by.itClass.constants.Constants.*;
 
 public class ConnectionManager {
     private static Connection cn;
-    private static Properties properties;
 
-    static {
-//        properties = PropertiesManager.getProperties(DB_FILE_NAME);
+    static  {
         try {
-            Class.forName("Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
