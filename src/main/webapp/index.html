@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form {
+            width: 270px;
+        }
+
+        div {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="employee">
+        <fieldset>
+            <legend>Employee</legend>
+            <div>
+                <label for="id">id: </label>
+                <input id="id" name="id" type="number">
+            </div>
+            <div>
+                <label for="name">Name: </label>
+                <input id="name" name="name" type="text">
+            </div>
+            <div>
+                <label for="position">Position: </label>
+                <input id="position" name="position" type="text">
+            </div>
+            <div>
+                <label for="salary">Salary: </label>
+                <input id="salary" name="salary" type="number">
+            </div>
+            <input type="submit" value="Enter">
+        </fieldset>
+    </form>
+</body>
+</html>
