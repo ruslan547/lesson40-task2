@@ -11,9 +11,9 @@ public class ConnectionManager {
     private static Properties properties;
 
     static {
-        properties = PropertiesManager.getProperties(DB_FILE_NAME);
+//        properties = PropertiesManager.getProperties(DB_FILE_NAME);
         try {
-            Class.forName(properties.getProperty(DB_DRIVER));
+            Class.forName("Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -22,9 +22,9 @@ public class ConnectionManager {
     public static Connection getConnection() {
         try {
             if (Objects.isNull(cn) || cn.isClosed()) {
-                cn = DriverManager.getConnection(properties.getProperty(DB_URL),
-                        properties.getProperty(DB_USER),
-                        properties.getProperty(DB_PASSWORD));
+                cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/itclassdb?serverTimezone=Europe/Minsk",
+                        "root",
+                        "");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

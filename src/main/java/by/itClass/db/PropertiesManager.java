@@ -9,7 +9,6 @@ import java.util.Properties;
 public class PropertiesManager {
     public static Properties getProperties(String filename) {
         Properties properties = new Properties();
-
         try (Reader reader = new FileReader(filename)) {
            properties.load(reader);
         } catch (FileNotFoundException e) {
